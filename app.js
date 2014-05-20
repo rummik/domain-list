@@ -1,9 +1,19 @@
 var express = require('express');
 var cloudflare = require('cloudflare');
-var config = require('./config');
 
 var fs = require('fs');
 var app = express();
+
+var config;
+if (process.env.NODE_ENV != 'production') {
+	config = require('./config');
+} else {
+	config = { cloudflare: {
+		email: process.env.CLOUDFLARE_EMAIL,
+		token: process.env.CLOUDFLARE_TOKEN,
+	} };
+}
+
 var cf = cloudflare.createClient(config.cloudflare);
 
 var list = '';
