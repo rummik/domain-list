@@ -4,17 +4,10 @@ var cloudflare = require('cloudflare');
 var fs = require('fs');
 var app = express();
 
-var config;
-if (process.env.NODE_ENV != 'production') {
-	config = require('./config');
-} else {
-	config = { cloudflare: {
-		email: process.env.CLOUDFLARE_EMAIL,
-		token: process.env.CLOUDFLARE_TOKEN,
-	} };
-}
-
-var cf = cloudflare.createClient(config.cloudflare);
+var cf = cloudflare.createClient({
+	email: process.env.CLOUDFLARE_EMAIL,
+	token: process.env.CLOUDFLARE_TOKEN,
+});
 
 var list = '';
 var index = '';
