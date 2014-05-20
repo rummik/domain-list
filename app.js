@@ -49,10 +49,11 @@ app.use(express.static('public'));
 				return [
 					'31.01.2101 23:59',
 					'    &lt;DIR&gt;          ',
-					record.name,
+					'<a href="http://', record.name, '">',
+					record.display_name,
+					'</a>',
 				].join('');
 			});
-
 	});
 
 	setTimeout(get, 60 * 60 * 1000);
