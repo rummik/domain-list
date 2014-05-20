@@ -11,12 +11,18 @@ var cf = cloudflare.createClient({
 
 var list = '';
 var index = '';
+var bytes = 0;
 
 app.get('/', function(req, res) {
 	if (!index || process.env.NODE_ENV == 'development')
 		index = fs.readFileSync('public/index.html').toString('utf8');
 
-	res.send(index.replace('{{list}}', list.join('\n')).replace('{{files}}', 0).replace('{{dirs}}', list.length + 2));
+	res.send(
+		index
+			.replace('{{list}}', list.join('\n'))
+			.replace('{{bytes}}', new Array(14 - (''+bytes).length).join(' ') + bytes)
+			.replace('{{files}}', new Array(4 - (''+list.length).length).join(' ') + list.length)
+	);
 });
 
 app.use(express.static('public'));
@@ -47,8 +53,7 @@ app.use(express.static('public'));
 
 			.map(function(record) {
 				return [
-					'31.01.2101 23:59',
-					'    &lt;DIR&gt;          ',
+					'31.01.2101 23:59                   ',
 					'<a href="http://', record.name, '">',
 					record.display_name,
 					'</a>',
