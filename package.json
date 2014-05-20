@@ -1,0 +1,12 @@
+{
+  "name": "domain-list",
+  "description": "Retrieve a list of subdomains from CloudFlare",
+  "version": "0.0.0",
+  "private": true,
+  "author": "rummik",
+  "license": "MPL",
+  "dependencies": {
+    "cloudflare": "0.0.6",
+    "express": "~4.2.0"
+  }
+}
