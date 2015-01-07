@@ -55,8 +55,8 @@ app.use(express.static('public'));
       })
 
       .concat([
-        { name: '9k1.us', display_name: '.' },
-        { name: 'www.rummik.com', display_name: '..' },
+        { name: 'app.9k1.us', display_name: '.' },
+        { name: '9k1.us', display_name: '..' },
       ])
 
       .sort(function(a, b) {
@@ -97,7 +97,7 @@ app.use(express.static('public'));
               /\.app$/.test(record.display_name) ? '     ' : '&lt;DIR&gt;',
               '          ',
               '<a href="http://', record.name, '">',
-              record.display_name,
+              record.display_name.replace(/\.app$/, ''),
               '</a>',
             ].join('');
           });
