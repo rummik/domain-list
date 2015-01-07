@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var cloudflare = require('cloudflare');
 
@@ -27,14 +29,15 @@ app.get('/', function(req, res) {
 
 app.use(express.static('public'));
 
-(function get(fb) {
+(function get() {
 	cf.listDomainRecords('9k1.us', function (err, records) {
 		if (err)
 			return console.error(err);
 
 		list = records
 			.filter(function(record) {
-				return ['A', 'AAAA', 'CNAME'].indexOf(record.type) >= 0 && /\.app$/.test(record.display_name);
+				return ['A', 'AAAA', 'CNAME'].indexOf(record.type) >= 0 &&
+					/^[a-z0-9_-]+\.app$/.test(record.display_name); // jshint ignore:line
 			})
 
 			.sort(function(a, b) {
@@ -48,15 +51,15 @@ app.use(express.static('public'));
 			})
 
 			.filter(function(value, i, array) {
-				return i == 0 || array[i - 1].name != value.name;
+				return i === 0 || array[i - 1].name != value.name;
 			})
 
 			.map(function(record) {
 				return [
 					'31.01.2101 23:59                   ',
 					'<a href="http://', record.name, '">',
-					record.display_name,
-					'</a>',
+					record.display_name.slice(0, -4), // jshint ignore:line
+					'\\</a>',
 				].join('');
 			});
 	});
