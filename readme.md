@@ -1,4 +1,4 @@
-Domain List [![Builds][]][travis] [![Deps][]][gemnasium] [![Donations][]][gittip]
+Domain List [![Builds][]][travis] [![Deps][]][gemnasium] [![Donations][]][gratipay]
 ===========
 Retrieve a list of subdomains from CloudFlare
 
@@ -6,8 +6,8 @@ Retrieve a list of subdomains from CloudFlare
 [travis]: https://travis-ci.org/rummik/domain-list
 [Deps]: https://gemnasium.com/rummik/domain-list.png "Dependency Status"
 [gemnasium]: https://gemnasium.com/rummik/domain-list
-[Donations]: http://img.shields.io/gittip/rummik.png
-[gittip]: https://www.gittip.com/rummik/
+[Donations]: http://img.shields.io/gratipay/rummik.png
+[gratipay]: https://www.gratipay.com/rummik/
 
 
 ## Getting Started
